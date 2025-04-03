@@ -1,5 +1,5 @@
-#include "tp1/ej1/headers/Empresa.hpp"
-#include "tp1/ej1/headers/Departamento.hpp"
+#include "../headers/Empresa.hpp"
+#include "../headers/Departamento.hpp"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -24,4 +24,14 @@ Departamento* Empresa::getDepByName(string nombre) const {
         }
     }
     return nullptr;
+}
+
+bool Empresa::agregarDepartamento(Departamento* departamento) {
+    for (Departamento* d : this->departamentos) {
+        if (d->nombre == departamento->nombre) {
+            return false;
+        }
+    }
+    this->departamentos.push_back(departamento);
+    return true;
 }

@@ -1,6 +1,6 @@
-#include "tp1/ej1/headers/CentralRegional.hpp"
-#include "tp1/ej1/headers/Empresa.hpp"
-#include "tp1/ej1/headers/Empleado.hpp"
+#include "../headers/CentralRegional.hpp"
+#include "../headers/Empresa.hpp"
+#include "../headers/Empleado.hpp"
 #include <vector>
 #include <string>
 #include <set>

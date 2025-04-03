@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "tp1/ej1/headers/EntidadOrganizativa.hpp"
+#include "../headers/EntidadOrganizativa.hpp"
 
 using namespace std;
 

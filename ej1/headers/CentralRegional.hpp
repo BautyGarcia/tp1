@@ -7,6 +7,7 @@
 #include <set>
 #include <string>
 #include "EntidadOrganizativa.hpp"
+#include "Empresa.hpp"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ class GerenteMedio;
 class compareEmpresas {
     public:
         bool operator()(Empresa* a, Empresa* b) const {
-            return a->getNombre() < b->getNombre();
+            return a->nombre < b->nombre;
         }
 };
 

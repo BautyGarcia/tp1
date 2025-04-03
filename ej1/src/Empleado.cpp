@@ -1,4 +1,4 @@
-#include "tp1/ej1/headers/Empleado.hpp"
+#include "../headers/Empleado.hpp"
 #include <string>
 #include <iostream>
 

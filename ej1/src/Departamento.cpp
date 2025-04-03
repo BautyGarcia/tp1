@@ -1,5 +1,5 @@
-#include "tp1/ej1/headers/Departamento.hpp"
-#include "tp1/ej1/headers/Empleado.hpp"
+#include "../headers/Departamento.hpp"
+#include "../headers/Empleado.hpp"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -12,7 +12,7 @@ Departamento::Departamento(string nombre, string ubicacion) :
     empleados(vector<Empleado*>())
 {}
 
-int Departamento::contarEmpleados() const {
+int Departamento::contarEmpleados() const { // Checkear tema static
     return this->empleados.size();
 }
 
@@ -27,7 +27,7 @@ bool Departamento::contratarEmpleado(Empleado* empleado) {
             return false;
         }
     }
-    
+
     this->empleados.push_back(empleado);
     return true;
 }
