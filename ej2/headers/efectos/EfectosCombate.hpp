@@ -7,7 +7,7 @@ using namespace std;
 
 class EfectoSangrado : public IEfecto {
     private:
-        static const int cantidad = 50;
+        static const int cantidad = 30;
     public:
         EfectoSangrado();
         void aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) override;

@@ -12,6 +12,10 @@ Guerrero::Guerrero(string nombre, int vida, int armadura, int magicResistance, p
     turnosRestantesEfecto(0)
 {}
 
+string Guerrero::getNombre() const {
+    return this->nombre;
+}
+
 int Guerrero::getMana() const {
     return this->mana;
 }
@@ -34,6 +38,10 @@ int Guerrero::getTurnosRestantesEfecto() const {
 
 int Guerrero::getDamageBoost() const {
     return this->damageBoost;
+}
+
+pair<shared_ptr<IArma>, shared_ptr<IArma>> Guerrero::getArmas() const {
+    return this->armas;
 }
 
 void Guerrero::recibirDamage(int damage) {

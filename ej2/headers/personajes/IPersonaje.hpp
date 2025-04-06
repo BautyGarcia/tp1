@@ -10,12 +10,14 @@ using namespace std;
 
 class IPersonaje {
     public:
+        virtual string getNombre() const = 0;
         virtual int getMana() const = 0;
         virtual int getVida() const = 0;
         virtual int getArmadura() const = 0;
         virtual int getMagicResistance() const = 0;
         virtual int getTurnosRestantesEfecto() const = 0;
         virtual int getDamageBoost() const = 0;
+        virtual pair<shared_ptr<IArma>, shared_ptr<IArma>> getArmas() const = 0;
         virtual void recibirDamage(int damage) = 0;
         virtual void curarVida(int cantidad) = 0;
         virtual void gastarMana(int cantidad) = 0;

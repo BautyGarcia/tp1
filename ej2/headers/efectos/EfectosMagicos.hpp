@@ -34,7 +34,7 @@ class BoostMagico : public IEfecto {
 
 class RoboDeVida : public IEfecto {
     private:
-        const int porcentaje = 20;
+        const int porcentaje = 15;
     public:
         RoboDeVida();
         void aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) override;

@@ -14,6 +14,10 @@ Mago::Mago(string nombre, int mana, int vida, int armadura, int magicResistance,
     turnosRestantesEfecto(0)
 {}
 
+string Mago::getNombre() const {
+    return this->nombre;
+}
+
 int Mago::getMana() const {
     return this->mana;
 }
@@ -32,6 +36,10 @@ int Mago::getMagicResistance() const {
 
 int Mago::getTurnosRestantesEfecto() const {
     return this->turnosRestantesEfecto;
+}
+
+pair<shared_ptr<IArma>, shared_ptr<IArma>> Mago::getArmas() const {
+    return this->armas;
 }
 
 void Mago::recibirDamage(int damage) {

@@ -1,5 +1,5 @@
-#ifndef ARMAMAGICA_HPP
-#define ARMAMAGICA_HPP
+#ifndef ARMACOMBATE_HPP
+#define ARMACOMBATE_HPP
 
 #include "IArma.hpp"
 

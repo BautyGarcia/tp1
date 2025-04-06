@@ -18,12 +18,14 @@ class Guerrero : public IPersonaje {
         int turnosRestantesEfecto;
     public:
         Guerrero(string nombre, int vida, int armadura, int magicResistance, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas);
+        string getNombre() const override;
         int getMana() const override;
         int getVida() const override;
         int getArmadura() const override;
         int getMagicResistance() const override;
         int getTurnosRestantesEfecto() const override;
         int getDamageBoost() const override;
+        pair<shared_ptr<IArma>, shared_ptr<IArma>> getArmas() const override;
         void recibirDamage(int damage) override;
         void curarVida(int cantidad) override;
         void gastarMana(int cantidad) override;
