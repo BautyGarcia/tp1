@@ -18,7 +18,7 @@ class Empresa : public EntidadOrganizativa {
         string direccion;
         Departamento* getDepByName(string nombre) const;
         vector<Departamento*> getDeps() const;
-        bool agregarDepartamento(Departamento* departamento); // Checkear si va o no
+        bool agregarDepartamento(Departamento* departamento); // Extra (Sino no puedo agregar departamento)
 };
 
 #endif

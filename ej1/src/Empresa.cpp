@@ -8,9 +8,9 @@ using namespace std;
 
 Empresa::Empresa(string nombre, string direccion) :
     EntidadOrganizativa(nombre),
+    departamentos(vector<Departamento*>()),
     nombre(nombre),
-    direccion(direccion),
-    departamentos(vector<Departamento*>())
+    direccion(direccion)
 {}
 
 vector<Departamento*> Empresa::getDeps() const {

@@ -5,10 +5,10 @@
 using namespace std;
 
 Empleado::Empleado(string nombre, string puesto, int antiguedad, float salario) :
-    nombre(nombre),
-    puesto(puesto),
     antiguedad(antiguedad),
-    salario(salario)
+    salario(salario),
+    nombre(nombre),
+    puesto(puesto)
 {}
 
 int Empleado::getAntiguedad() const {

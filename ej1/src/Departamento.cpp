@@ -7,12 +7,12 @@
 using namespace std;
 
 Departamento::Departamento(string nombre, string ubicacion) :
+    empleados(vector<Empleado*>()),
     nombre(nombre),
-    ubicacion(ubicacion),
-    empleados(vector<Empleado*>())
+    ubicacion(ubicacion)
 {}
 
-int Departamento::contarEmpleados() const { // Checkear tema static
+int Departamento::contarEmpleados() const {
     return this->empleados.size();
 }
 

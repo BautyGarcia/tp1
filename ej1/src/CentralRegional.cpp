@@ -1,6 +1,7 @@
 #include "../headers/CentralRegional.hpp"
 #include "../headers/Empresa.hpp"
 #include "../headers/Empleado.hpp"
+#include "../headers/Departamento.hpp"
 #include <vector>
 #include <string>
 #include <set>
@@ -8,13 +9,13 @@
 
 using namespace std;
 
-CentralRegional::CentralRegional(string nombre, string pais) :
+CentralRegional::CentralRegional(string nombre) :
     EntidadOrganizativa(nombre),
-    nombre(nombre),
-    paises(set<string>()),
     empresas(set<Empresa*, compareEmpresas>()),
     gerentesAlto(vector<GerenteAlto*>()),
-    gerentesMedio(vector<GerenteMedio*>())
+    gerentesMedio(vector<GerenteMedio*>()),
+    nombre(nombre),
+    paises(set<string>())
 {}
 
 int CentralRegional::getCantEmpleados() const {
@@ -35,4 +36,39 @@ vector<GerenteAlto*> CentralRegional::getGerentesAlto() const {
 
 vector<GerenteMedio*> CentralRegional::getGerentesMedio() const {
     return this->gerentesMedio;
+}
+
+void CentralRegional::agregarPais(string pais) {
+    this->paises.insert(pais);
+}
+
+bool CentralRegional::agregarGerenteAlto(GerenteAlto* gerente) {
+    if (this->gerentesAlto.size() < MAX_GERENTES_ALTO) {
+        this->gerentesAlto.push_back(gerente);
+        this->cantEmpleados++;
+        return true;
+    }
+
+    cout << "No se puede agregar mas gerentes altos" << endl;
+    return false;
+}
+
+bool CentralRegional::agregarGerenteMedio(GerenteMedio* gerente) {
+    if (this->gerentesMedio.size() < MAX_GERENTES_MEDIO) {
+        this->gerentesMedio.push_back(gerente);
+        this->cantEmpleados++;
+        return true;
+    }
+
+    cout << "No se puede agregar mas gerentes medios" << endl;
+    return false;
+}
+
+// El second al insertar en un set sirve para saber si la inserción fue exitosa (golazo)
+bool CentralRegional::agregarEmpresa(Empresa* empresa) {
+    // Cuando agrego una empresa, sumo la cantidad de empleados de todos sus departamentos
+    for (Departamento* d : empresa->getDeps()) {
+        this->cantEmpleados += d->contarEmpleados();
+    }
+    return this->empresas.insert(empresa).second;
 }
