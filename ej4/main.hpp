@@ -18,7 +18,7 @@ void mostrarOpcionesAtaque();
 TipoAtaque seleccionarAtaque();
 TipoAtaque ataqueAleatorio();
 void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival);
-shared_ptr<IPersonaje> seleccionarPersonaje();
+int seleccionarPersonaje();
 shared_ptr<IArma> seleccionarArma();
 shared_ptr<IPersonaje> crearPersonajeAleatorio();
 string obtenerBarraVida(int vida);

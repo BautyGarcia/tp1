@@ -90,7 +90,7 @@ string obtenerNombreAtaque(TipoAtaque ataque) {
     }
 }
 
-shared_ptr<IPersonaje> seleccionarPersonaje() {
+int seleccionarPersonaje() {
     int opcion;
     
     while (true) {
@@ -104,8 +104,7 @@ shared_ptr<IPersonaje> seleccionarPersonaje() {
             continue;
         }
 
-        auto tipoPersonaje = static_cast<PersonajesCombate>(opcion);
-        return Factory::crearPersonaje(tipoPersonaje, {nullptr, nullptr});
+        return opcion;
     }
 }
 
@@ -215,20 +214,18 @@ int main() {
     ClearScreen();
     cout << "=== Creación del Personaje del Jugador 1 ===" << endl;
     
-    shared_ptr<IPersonaje> jugador = seleccionarPersonaje();
+    int opcion_jugador = seleccionarPersonaje();
     
     ClearScreen();
-    cout << "Has seleccionado: " << jugador->getNombre() << endl;
-    
+
     shared_ptr<IArma> arma = seleccionarArma();
-    jugador = Factory::crearPersonaje(
-        static_cast<PersonajesCombate>(jugador->getTipo()),
+    shared_ptr<IPersonaje> jugador = Factory::crearPersonaje(
+        static_cast<PersonajesCombate>(opcion_jugador),
         {arma, nullptr}
     );
-
+    
     shared_ptr<IPersonaje> rival = crearPersonajeAleatorio();
 
-    ClearScreen();
     mostrarMarcadorBatalla(jugador, rival, 100, 100);
     cout << endl;
     simularBatalla(jugador, rival);
