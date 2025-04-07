@@ -9,13 +9,13 @@ class Empleado {
     private:
         int antiguedad;
         float salario;
-        float getSalario() const;
     public:
         Empleado(string nombre, string puesto, int antiguedad, float salario);
         string nombre;
         string puesto;
         int getAntiguedad() const;
         bool updateSalario(float nuevoSalario);
+        float getSalario() const;
 };
 
 class Manager : public Empleado {

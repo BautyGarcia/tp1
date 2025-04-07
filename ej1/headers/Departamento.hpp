@@ -11,11 +11,12 @@ class Empleado;
 class Departamento {
     private:
         vector<Empleado*> empleados;
+        static int cantEmpleadosDepts;
     public:
         Departamento(string nombre, string ubicacion);
         string nombre;
         string ubicacion;
-        int contarEmpleados() const;
+        static int contarEmpleados();
         vector<Empleado*> getEmpleados() const;
         bool contratarEmpleado(Empleado* empleado);
         bool despedirEmpleado(Empleado* empleado);

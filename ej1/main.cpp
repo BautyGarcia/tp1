@@ -110,5 +110,6 @@ int main() {
     // Muestro los gerentes de la central regional
     mostrarGerentes(VolkswagenLatam);
     
+    cout << "Cantidad de empleados en departamentos: " << Departamento::contarEmpleados() << endl;
     return 0;
 }
