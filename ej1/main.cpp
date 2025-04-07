@@ -45,10 +45,10 @@ int main() {
     Departamento* deptRHUruguay = new Departamento("RH", "Av. Corrientes Bo 123");
 
     // Creo gerentes
-    GerenteAlto* gerenteAltoArgentina = new GerenteAlto("Juan", "Corrector de TPs", 1, 100000, 15, "Senior");
-    GerenteAlto* gerenteAltoUruguay = new GerenteAlto("Maria", "Lavaplatos", 4, 100000, 15, "Senior");
-    GerenteMedio* gerenteMedioArgentina = new GerenteMedio("Pedro", "Marinero", 1, 100000, 15, "Senior");
-    GerenteMedio* gerenteMedioUruguay = new GerenteMedio("Ana", "Chofer", 2, 100000, 15, "Senior");
+    GerenteAlto* gerenteAltoArgentina = new GerenteAlto("Juan", "Corrector de TPs", 1, 100000, 15, ManagerLevel::ALTO);
+    GerenteAlto* gerenteAltoUruguay = new GerenteAlto("Maria", "Lavaplatos", 4, 100000, 15, ManagerLevel::ALTO);
+    GerenteMedio* gerenteMedioArgentina = new GerenteMedio("Pedro", "Marinero", 1, 100000, 15, ManagerLevel::MEDIO);
+    GerenteMedio* gerenteMedioUruguay = new GerenteMedio("Ana", "Chofer", 2, 100000, 15, ManagerLevel::MEDIO);
 
     // Creo los empleados
     Empleado* empITArgentina = new Empleado("Juan", "Corrector de TPs", 1, 100000);
