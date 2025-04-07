@@ -42,6 +42,10 @@ pair<shared_ptr<IArma>, shared_ptr<IArma>> Mago::getArmas() const {
     return this->armas;
 }
 
+TipoPersonaje Mago::getTipo() const {
+    return TipoPersonaje::MAGIA;
+}
+
 void Mago::recibirDamage(int damage) {
     this->vida -= damage;
 

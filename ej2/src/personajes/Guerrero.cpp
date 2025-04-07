@@ -44,6 +44,10 @@ pair<shared_ptr<IArma>, shared_ptr<IArma>> Guerrero::getArmas() const {
     return this->armas;
 }
 
+TipoPersonaje Guerrero::getTipo() const {
+    return TipoPersonaje::COMBATE;
+}
+
 void Guerrero::recibirDamage(int damage) {
     this->vida -= damage;
 }

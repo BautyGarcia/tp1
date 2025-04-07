@@ -15,4 +15,9 @@ enum class Efecto {
     NINGUNO
 };
 
+enum class TipoPersonaje {
+    COMBATE,
+    MAGIA
+};
+
 #endif

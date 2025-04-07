@@ -26,6 +26,7 @@ class Mago : public IPersonaje {
         int getTurnosRestantesEfecto() const override;
         int getDamageBoost() const override;
         pair<shared_ptr<IArma>, shared_ptr<IArma>> getArmas() const override;
+        TipoPersonaje getTipo() const override;
         void recibirDamage(int damage) override;
         void curarVida(int cantidad) override;
         void gastarMana(int cantidad) override;
