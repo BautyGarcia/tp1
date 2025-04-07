@@ -1,5 +1,4 @@
 #include "Factory.hpp"
-#include <vector>
 
 using namespace std;
 

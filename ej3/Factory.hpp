@@ -24,6 +24,9 @@
 #include <string>
 #include <iostream>
 #include <random>
+#include <cstdlib>
+#include <ctime>
+#include <vector>
 
 using namespace std;
 
