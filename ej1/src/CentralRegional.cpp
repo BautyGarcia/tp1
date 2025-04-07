@@ -64,11 +64,6 @@ bool CentralRegional::agregarGerenteMedio(GerenteMedio* gerente) {
     return false;
 }
 
-// El second al insertar en un set sirve para saber si la inserción fue exitosa (golazo)
 bool CentralRegional::agregarEmpresa(Empresa* empresa) {
-    // Cuando agrego una empresa, sumo la cantidad de empleados de todos sus departamentos
-    for (Departamento* d : empresa->getDeps()) {
-        this->cantEmpleados += d->contarEmpleados();
-    }
     return this->empresas.insert(empresa).second;
 }

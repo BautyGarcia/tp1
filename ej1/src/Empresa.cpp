@@ -13,8 +13,12 @@ Empresa::Empresa(string nombre, string direccion) :
     direccion(direccion)
 {}
 
-vector<Departamento*> Empresa::getDeps() const {
-    return this->departamentos;
+vector<string> Empresa::getDepNames() const {
+    vector<string> nombres;
+    for (Departamento* d : this->departamentos) {
+        nombres.push_back(d->nombre);
+    }
+    return nombres;
 }
 
 Departamento* Empresa::getDepByName(string nombre) const {
