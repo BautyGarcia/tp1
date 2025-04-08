@@ -7,7 +7,7 @@ using namespace std;
 
 class Lanza : public ArmaCombate {
     public:
-        Lanza(string nombre, int damage, int costoMana, int alcance);
+        Lanza(string nombre, int damage, int alcance);
 };
 
 #endif

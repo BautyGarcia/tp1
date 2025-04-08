@@ -14,7 +14,6 @@ class ArmaMagica : public IArma {
         int damage;
         int costoMana;
         int alcance;
-        static const TipoArma tipo = TipoArma::MAGIA;
         shared_ptr<IEfecto> efecto;
     public:
         ArmaMagica(string nombre, int damage, int costoMana, int alcance, shared_ptr<IEfecto> efecto);

@@ -7,7 +7,7 @@ using namespace std;
 
 class HachaDoble : public ArmaCombate {
     public:
-        HachaDoble(string nombre, int damage, int costoMana, int alcance);
+        HachaDoble(string nombre, int damage, int alcance);
 };
 
 #endif

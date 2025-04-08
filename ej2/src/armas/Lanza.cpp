@@ -1,6 +1,6 @@
 #include "../../headers/armas/Lanza.hpp"
 #include "../../headers/efectos/EfectosCombate.hpp"
 
-Lanza::Lanza(string nombre, int damage, int costoMana, int alcance) : 
-    ArmaCombate(nombre, damage, costoMana, alcance, make_shared<EmptyEfecto>()) 
+Lanza::Lanza(string nombre, int damage, int alcance) : 
+    ArmaCombate(nombre, damage, alcance, make_shared<EmptyEfecto>()) 
 {}

@@ -2,5 +2,5 @@
 #include "../../headers/efectos/EfectosMagicos.hpp"
 
 Amuleto::Amuleto(string nombre, int damage, int costoMana, int alcance) : 
-    ArmaMagica(nombre, damage, costoMana, alcance, make_shared<CurarVida>())
+    ArmaMagica(nombre, damage, costoMana, alcance, make_shared<RoboDeVida>())
 {}

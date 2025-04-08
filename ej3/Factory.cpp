@@ -3,15 +3,15 @@
 shared_ptr<IArma> Factory::crearArma(Armas arma) {
     switch (arma) {
         case Armas::ESPADA:
-            return make_shared<Espada>("Espada", 50, 0, 2);
+            return make_shared<Espada>("Espada", 50, 2);
         case Armas::HACHA:
-            return make_shared<Hacha>("Hacha", 55, 0, 1);
+            return make_shared<Hacha>("Hacha", 55, 1);
         case Armas::LANZA:
-            return make_shared<Lanza>("Lanza", 45, 0, 3);
+            return make_shared<Lanza>("Lanza", 45, 3);
         case Armas::HACHA_DOBLE:
-            return make_shared<HachaDoble>("Hacha Doble", 65, 0, 1);
+            return make_shared<HachaDoble>("Hacha Doble", 65, 1);
         case Armas::GARROTE:
-            return make_shared<Garrote>("Garrote", 40, 0, 1);
+            return make_shared<Garrote>("Garrote", 40, 1);
         case Armas::AMULETO:
             return make_shared<Amuleto>("Amuleto", 30, 25, 3);
         case Armas::BASTON:
