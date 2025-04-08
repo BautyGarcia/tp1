@@ -14,7 +14,7 @@ class IPersonaje {
         virtual int getMana() const = 0;
         virtual int getVida() const = 0;
         virtual int getArmadura() const = 0;
-        virtual int getMagicResistance() const = 0;
+        virtual int getResistenciaMagica() const = 0;
         virtual int getTurnosRestantesEfecto() const = 0;
         virtual int getDamageBoost() const = 0;
         virtual pair<shared_ptr<IArma>, shared_ptr<IArma>> getArmas() const = 0;

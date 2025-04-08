@@ -11,18 +11,18 @@ class Mago : public IPersonaje {
         int mana;
         int vida;
         int armadura;
-        int magicResistance;
+        int resistenciaMagica;
         int damageBoost;
         pair<shared_ptr<IArma>, shared_ptr<IArma>> armas;
         Efecto efectoActual;
         int turnosRestantesEfecto;
     public:
-        Mago(string nombre, int mana, int vida, int armadura, int magicResistance, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas);
+        Mago(string nombre, int mana, int vida, int armadura, int resistenciaMagica, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas);
         string getNombre() const override;
         int getMana() const override;
         int getVida() const override;
         int getArmadura() const override;
-        int getMagicResistance() const override;
+        int getResistenciaMagica() const override;
         int getTurnosRestantesEfecto() const override;
         int getDamageBoost() const override;
         pair<shared_ptr<IArma>, shared_ptr<IArma>> getArmas() const override;

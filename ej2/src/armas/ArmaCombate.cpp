@@ -33,7 +33,8 @@ void ArmaCombate::usar(shared_ptr<IPersonaje> personaje, shared_ptr<IPersonaje> 
         throw string("Esta arma no tiene usos restantes");
     }
 
-    int damage = this->damage - objetivo->getArmadura();
+    float boost = (float)personaje->getDamageBoost() / 100 + 1;
+    int damage = (this->damage * boost) - objetivo->getArmadura();
     if (damage < 0) damage = 0;
 
     objetivo->recibirDamage(damage);

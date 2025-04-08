@@ -1,12 +1,12 @@
 #include "../../headers/personajes/Guerrero.hpp"
 #include "../../headers/efectos/EfectosCombate.hpp"
 
-Guerrero::Guerrero(string nombre, int vida, int armadura, int magicResistance, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas) : 
+Guerrero::Guerrero(string nombre, int vida, int armadura, int resistenciaMagica, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas) : 
     nombre(nombre),
     mana(0),
     vida(vida),
     armadura(armadura),
-    magicResistance(magicResistance),
+    resistenciaMagica(resistenciaMagica),
     armas(armas),
     efectoActual(Efecto::NINGUNO),
     turnosRestantesEfecto(0)
@@ -28,8 +28,8 @@ int Guerrero::getArmadura() const {
     return this->armadura;
 }
 
-int Guerrero::getMagicResistance() const {
-    return this->magicResistance;
+int Guerrero::getResistenciaMagica() const {
+    return this->resistenciaMagica;
 }
 
 int Guerrero::getTurnosRestantesEfecto() const {

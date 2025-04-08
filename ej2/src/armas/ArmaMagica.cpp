@@ -40,7 +40,7 @@ void ArmaMagica::usar(shared_ptr<IPersonaje> personaje, shared_ptr<IPersonaje> o
 
     // Calculo de damage
     float boost = (float)personaje->getDamageBoost() / 100 + 1;
-    int damage = (this->damage * boost) - objetivo->getMagicResistance();
+    int damage = (this->damage * boost) - objetivo->getResistenciaMagica();
     
     if (damage < 0) damage = 0;
 
