@@ -162,11 +162,19 @@ void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival
     int vidaJugador = 100;
     int vidaRival = 100;
     int turno = 1;
+    string mensajeResultado = "";
     
     while (vidaJugador > 0 && vidaRival > 0) {
         ClearScreen();
         mostrarMarcadorBatalla(jugador, rival, vidaJugador, vidaRival);
         cout << endl;
+        
+        if (!mensajeResultado.empty()) {
+            cout << "==================== Resultado =====================" << endl;
+            cout << mensajeResultado << endl;
+            cout << "==================================================" << endl;
+            cout << endl;
+        }
         
         cout << "==================== Turno " << turno << " ====================" << endl;
         
@@ -176,22 +184,20 @@ void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival
         cout << "==================================================" << endl;
         
         if (ataqueJugador == ataqueRival) {
-            cout << "¡Empate! Ningún jugador recibe daño." << endl;
+            mensajeResultado = "¡Empate! Ningún jugador recibe daño.";
         } else if (
             (ataqueJugador == TipoAtaque::GOLPE_FUERTE && ataqueRival == TipoAtaque::GOLPE_RAPIDO) ||
             (ataqueJugador == TipoAtaque::GOLPE_RAPIDO && ataqueRival == TipoAtaque::DEFENSA_Y_GOLPE) ||
             (ataqueJugador == TipoAtaque::DEFENSA_Y_GOLPE && ataqueRival == TipoAtaque::GOLPE_FUERTE)
         ) {
             vidaRival -= 10;
-            cout << jugador->getNombre() << " ataca con " << jugador->getArmas().first->getNombre() 
-                 << " y hace 10 puntos de daño." << endl;
+            mensajeResultado = jugador->getNombre() + " ataca con " + jugador->getArmas().first->getNombre() 
+                            + " y hace 10 puntos de daño.";
         } else {
             vidaJugador -= 10;
-            cout << rival->getNombre() << " ataca con " << rival->getArmas().first->getNombre() 
-                 << " y hace 10 puntos de daño." << endl;
+            mensajeResultado = rival->getNombre() + " ataca con " + rival->getArmas().first->getNombre() 
+                            + " y hace 10 puntos de daño.";
         }
-        
-        cout << "==================================================\n" << endl;
         
         turno++;
     }
