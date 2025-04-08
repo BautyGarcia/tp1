@@ -128,7 +128,7 @@ shared_ptr<IArma> seleccionarArma() {
 
 shared_ptr<IPersonaje> crearPersonajeAleatorio() {
     // Personaje aleatorio (0-8)
-    PersonajesCombate tipoPersonaje = static_cast<PersonajesCombate>(rand() % 9);
+    Personajes tipoPersonaje = static_cast<Personajes>(rand() % 9);
     
     // Arma aleatoria (0-8)
     Armas tipoArma = static_cast<Armas>(rand() % 9);
@@ -226,7 +226,7 @@ int main() {
 
     shared_ptr<IArma> arma = seleccionarArma();
     shared_ptr<IPersonaje> jugador = Factory::crearPersonaje(
-        static_cast<PersonajesCombate>(opcion_jugador),
+        static_cast<Personajes>(opcion_jugador),
         {arma, nullptr}
     );
     

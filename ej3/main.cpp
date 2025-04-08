@@ -71,7 +71,7 @@ void mostrarPersonaje(const shared_ptr<IPersonaje>& personaje) {
     cout << "=== " << personaje->getNombre() << " ===" << endl;
     cout << "Vida: " << personaje->getVida() << endl;
     cout << "Armadura: " << personaje->getArmadura() << endl;
-    cout << "Resistencia Mágica: " << personaje->getMagicResistance() << endl;
+    cout << "Resistencia Mágica: " << personaje->getResistenciaMagica() << endl;
 
     // Mostrar armas
     cout << "Armas:" << endl;
