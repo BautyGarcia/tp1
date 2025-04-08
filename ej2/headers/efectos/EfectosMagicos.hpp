@@ -7,7 +7,7 @@ using namespace std;
 
 class Stun : public IEfecto {
     private:
-        const float probabilidad = 20;
+        const int probabilidad = 20;
     public:
         Stun();
         void aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) override;

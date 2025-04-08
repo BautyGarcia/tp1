@@ -13,7 +13,7 @@ class ArmaCombate : public IArma {
         string nombre;
         int damage;
         int alcance;
-        int usosRestantes = 100;
+        int usosRestantes;
         shared_ptr<IEfecto> efecto;
     public:
         ArmaCombate(string nombre, int damage, int alcance, shared_ptr<IEfecto> efecto);
