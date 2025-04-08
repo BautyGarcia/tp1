@@ -1,11 +1,6 @@
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
-enum class TipoArma {
-    MAGIA,
-    COMBATE
-};
-
 enum class Efecto {
     CURAR_VIDA,
     BOOST_MAGICO,
@@ -13,11 +8,6 @@ enum class Efecto {
     STUN,
     SANGRE,
     NINGUNO
-};
-
-enum class TipoPersonaje {
-    COMBATE,
-    MAGIA
 };
 
 #endif

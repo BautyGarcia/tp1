@@ -30,7 +30,7 @@
 
 using namespace std;
 
-enum class PersonajesCombate {
+enum class Personajes {
     BARBARO,
     CABALLERO,
     MERCENARIO,
@@ -57,5 +57,5 @@ enum class Armas {
 class Factory {
     public:
         static shared_ptr<IArma> crearArma(Armas arma);
-        static shared_ptr<IPersonaje> crearPersonaje(PersonajesCombate personaje, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas);
+        static shared_ptr<IPersonaje> crearPersonaje(Personajes personaje, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas);
 };

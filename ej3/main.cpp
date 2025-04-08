@@ -30,19 +30,19 @@ shared_ptr<IArma> getRandomArma(bool isMago) {
 shared_ptr<IPersonaje> getRandomPersonaje(bool isMago, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas) {
     if (isMago) {
         switch (getRandomNumber(0, 3)) {
-            case 0: return Factory::crearPersonaje(PersonajesCombate::NIGROMANTE, armas);
-            case 1: return Factory::crearPersonaje(PersonajesCombate::CONJURADOR, armas);
-            case 2: return Factory::crearPersonaje(PersonajesCombate::HECHICERO, armas);
-            case 3: return Factory::crearPersonaje(PersonajesCombate::BRUJO, armas);
+            case 0: return Factory::crearPersonaje(Personajes::NIGROMANTE, armas);
+            case 1: return Factory::crearPersonaje(Personajes::CONJURADOR, armas);
+            case 2: return Factory::crearPersonaje(Personajes::HECHICERO, armas);
+            case 3: return Factory::crearPersonaje(Personajes::BRUJO, armas);
             default: return nullptr;
         }
     } else {
         switch (getRandomNumber(0, 4)) {
-            case 0: return Factory::crearPersonaje(PersonajesCombate::BARBARO, armas);
-            case 1: return Factory::crearPersonaje(PersonajesCombate::CABALLERO, armas);
-            case 2: return Factory::crearPersonaje(PersonajesCombate::MERCENARIO, armas);
-            case 3: return Factory::crearPersonaje(PersonajesCombate::PALADIN, armas);
-            case 4: return Factory::crearPersonaje(PersonajesCombate::GLADIADOR, armas);
+            case 0: return Factory::crearPersonaje(Personajes::BARBARO, armas);
+            case 1: return Factory::crearPersonaje(Personajes::CABALLERO, armas);
+            case 2: return Factory::crearPersonaje(Personajes::MERCENARIO, armas);
+            case 3: return Factory::crearPersonaje(Personajes::PALADIN, armas);
+            case 4: return Factory::crearPersonaje(Personajes::GLADIADOR, armas);
             default: return nullptr;
         }
     }
