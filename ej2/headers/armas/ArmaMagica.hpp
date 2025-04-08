@@ -19,7 +19,6 @@ class ArmaMagica : public IArma {
     public:
         ArmaMagica(string nombre, int damage, int costoMana, int alcance, shared_ptr<IEfecto> efecto);
         string getNombre() const override;
-        TipoArma getTipo() const override;
         int getDamage() const override;
         int getAlcance() const override;
         int getCostoMana() const;

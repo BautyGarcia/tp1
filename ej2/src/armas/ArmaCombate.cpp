@@ -16,10 +16,6 @@ string ArmaCombate::getNombre() const {
     return this->nombre;
 }
 
-TipoArma ArmaCombate::getTipo() const {
-    return this->tipo;
-}
-
 int ArmaCombate::getDamage() const {
     return this->damage;
 }

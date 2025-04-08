@@ -20,10 +20,6 @@ int ArmaMagica::getDamage() const {
     return this->damage;
 }
 
-TipoArma ArmaMagica::getTipo() const {
-    return this->tipo;
-}
-
 int ArmaMagica::getAlcance() const {
     return this->alcance;
 }

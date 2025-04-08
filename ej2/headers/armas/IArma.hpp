@@ -13,7 +13,6 @@ class IPersonaje;
 class IArma {
     public:
         virtual string getNombre() const = 0;
-        virtual TipoArma getTipo() const = 0;
         virtual int getDamage() const = 0;
         virtual int getAlcance() const = 0;
         virtual void usar(shared_ptr<IPersonaje> personaje, shared_ptr<IPersonaje> objetivo) = 0;

@@ -17,7 +17,6 @@ class IPersonaje {
         virtual int getMagicResistance() const = 0;
         virtual int getTurnosRestantesEfecto() const = 0;
         virtual int getDamageBoost() const = 0;
-        virtual TipoPersonaje getTipo() const = 0;
         virtual pair<shared_ptr<IArma>, shared_ptr<IArma>> getArmas() const = 0;
         virtual void recibirDamage(int damage) = 0;
         virtual void curarVida(int cantidad) = 0;
