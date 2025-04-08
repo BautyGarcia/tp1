@@ -3,26 +3,26 @@
 
 using namespace std;
 
-EfectoSangrado::EfectoSangrado() {}
+Sangrado::Sangrado() {}
 
-void EfectoSangrado::aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) {
+void Sangrado::aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) {
     objetivo->aplicarEfecto(Efecto::SANGRE, 3);
 }
 
-string EfectoSangrado::getNombre() const {
+string Sangrado::getNombre() const {
     return "Efecto Sangrado";
 }
 
-const int EfectoSangrado::getCantidad() {
+const int Sangrado::getCantidad() {
     return cantidad;
 }
 
-EmptyEfecto::EmptyEfecto() {}
+Nada::Nada() {}
 
-void EmptyEfecto::aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) {
+void Nada::aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) {
     // Nada
 }
 
-string EmptyEfecto::getNombre() const {
+string Nada::getNombre() const {
     return "Nada";
 }

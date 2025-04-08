@@ -2,5 +2,5 @@
 #include "../../headers/efectos/EfectosCombate.hpp"
 
 Garrote::Garrote(string nombre, int damage, int alcance) : 
-    ArmaCombate(nombre, damage, alcance, make_shared<EmptyEfecto>()) 
+    ArmaCombate(nombre, damage, alcance, make_shared<Sangrado>()) 
 {}

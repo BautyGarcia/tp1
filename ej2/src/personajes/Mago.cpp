@@ -83,7 +83,7 @@ void Mago::propagarEfecto() {
     if (this->turnosRestantesEfecto == 0) return;
 
     if (this->efectoActual == Efecto::SANGRE) {
-        this->vida -= EfectoSangrado::getCantidad();
+        this->vida -= Sangrado::getCantidad();
     }
 
     this->restarTurnoEfecto();
