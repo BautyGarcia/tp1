@@ -8,31 +8,31 @@ using namespace std;
 
 Empresa::Empresa(string nombre, string direccion) :
     EntidadOrganizativa(nombre),
-    departamentos(vector<Departamento*>()),
+    departamentos(vector<Departamento>()),
     nombre(nombre),
     direccion(direccion)
 {}
 
 vector<string> Empresa::getDepNames() const {
     vector<string> nombres;
-    for (Departamento* d : this->departamentos) {
-        nombres.push_back(d->nombre);
+    for (const Departamento& d : this->departamentos) {
+        nombres.push_back(d.nombre);
     }
     return nombres;
 }
 
-Departamento* Empresa::getDepByName(string nombre) const {
-    for (Departamento* d : this->departamentos) {
-        if (d->nombre == nombre) {
+Departamento Empresa::getDepByName(string nombre) const {
+    for (const Departamento& d : this->departamentos) {
+        if (d.nombre == nombre) {
             return d;
         }
     }
-    return nullptr;
+    throw invalid_argument("Departamento no encontrado");
 }
 
-bool Empresa::agregarDepartamento(Departamento* departamento) {
-    for (Departamento* d : this->departamentos) {
-        if (d->nombre == departamento->nombre) {
+bool Empresa::agregarDepartamento(const Departamento& departamento) {
+    for (const Departamento& d : this->departamentos) {
+        if (d.nombre == departamento.nombre) {
             return false;
         }
     }

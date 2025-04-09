@@ -11,9 +11,9 @@ using namespace std;
 
 CentralRegional::CentralRegional(string nombre) :
     EntidadOrganizativa(nombre),
-    empresas(set<Empresa*, compareEmpresas>()),
-    gerentesAlto(vector<GerenteAlto*>()),
-    gerentesMedio(vector<GerenteMedio*>()),
+    empresas(set<Empresa, compareEmpresas>()),
+    gerentesAlto(vector<GerenteAlto>()),
+    gerentesMedio(vector<GerenteMedio>()),
     nombre(nombre),
     paises(set<string>())
 {}
@@ -24,17 +24,17 @@ int CentralRegional::getCantEmpleados() const {
 
 vector<string> CentralRegional::getEmpNames() const {
     vector<string> empNames;
-    for (Empresa* e : this->empresas) {
-        empNames.push_back(e->getNombre());
+    for (const Empresa& e : this->empresas) {
+        empNames.push_back(e.getNombre());
     }
     return empNames;
 }
 
-vector<GerenteAlto*> CentralRegional::getGerentesAlto() const {
+vector<GerenteAlto> CentralRegional::getGerentesAlto() const {
     return this->gerentesAlto;
 }
 
-vector<GerenteMedio*> CentralRegional::getGerentesMedio() const {
+vector<GerenteMedio> CentralRegional::getGerentesMedio() const {
     return this->gerentesMedio;
 }
 
@@ -42,7 +42,7 @@ void CentralRegional::agregarPais(string pais) {
     this->paises.insert(pais);
 }
 
-bool CentralRegional::agregarGerenteAlto(GerenteAlto* gerente) {
+bool CentralRegional::agregarGerenteAlto(const GerenteAlto& gerente) {
     if (this->gerentesAlto.size() < MAX_GERENTES_ALTO) {
         this->gerentesAlto.push_back(gerente);
         this->cantEmpleados++;
@@ -53,7 +53,7 @@ bool CentralRegional::agregarGerenteAlto(GerenteAlto* gerente) {
     return false;
 }
 
-bool CentralRegional::agregarGerenteMedio(GerenteMedio* gerente) {
+bool CentralRegional::agregarGerenteMedio(const GerenteMedio& gerente) {
     if (this->gerentesMedio.size() < MAX_GERENTES_MEDIO) {
         this->gerentesMedio.push_back(gerente);
         this->cantEmpleados++;
@@ -64,6 +64,6 @@ bool CentralRegional::agregarGerenteMedio(GerenteMedio* gerente) {
     return false;
 }
 
-bool CentralRegional::agregarEmpresa(Empresa* empresa) {
+bool CentralRegional::agregarEmpresa(const Empresa& empresa) {
     return this->empresas.insert(empresa).second;
 }

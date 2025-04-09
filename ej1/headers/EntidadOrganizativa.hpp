@@ -9,11 +9,11 @@ using namespace std;
 class EntidadOrganizativa {
     private:
         string nombre;
-        vector<EntidadOrganizativa*> subentidades;
+        vector<EntidadOrganizativa> subentidades;
     public:
         EntidadOrganizativa(string nombre);
         string getNombre() const;
-        bool agregarSubentidad(EntidadOrganizativa* subentidad);
+        bool agregarSubentidad(const EntidadOrganizativa& subentidad);
         int contarSubentidades() const;
 };
 

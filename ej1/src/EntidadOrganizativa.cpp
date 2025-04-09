@@ -7,16 +7,16 @@ using namespace std;
 
 EntidadOrganizativa::EntidadOrganizativa(string nombre) :
     nombre(nombre),
-    subentidades(vector<EntidadOrganizativa*>()) 
+    subentidades(vector<EntidadOrganizativa>()) 
 {}
 
 string EntidadOrganizativa::getNombre() const {
     return this->nombre;
 }
 
-bool EntidadOrganizativa::agregarSubentidad(EntidadOrganizativa* subentidad) {
-    for (EntidadOrganizativa* e : this->subentidades) {
-        if (e->getNombre() == subentidad->getNombre()) {
+bool EntidadOrganizativa::agregarSubentidad(const EntidadOrganizativa& subentidad) {
+    for (const EntidadOrganizativa& e : this->subentidades) {
+        if (e.getNombre() == subentidad.getNombre()) {
             cout << "La subentidad ya existe" << endl;
             return false;
         }

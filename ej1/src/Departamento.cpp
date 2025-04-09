@@ -9,7 +9,7 @@ using namespace std;
 int Departamento::cantEmpleadosDepts = 0;
 
 Departamento::Departamento(string nombre, string ubicacion) :
-    empleados(vector<Empleado*>()),
+    empleados(vector<Empleado>()),
     nombre(nombre),
     ubicacion(ubicacion)
 {}
@@ -18,23 +18,23 @@ int Departamento::contarEmpleados() {
     return cantEmpleadosDepts;
 }
 
-vector<Empleado*> Departamento::getEmpleados() const {
+vector<Empleado> Departamento::getEmpleados() const {
     return this->empleados;
 }
 
-bool Departamento::contratarEmpleado(Empleado* empleado) {
+bool Departamento::contratarEmpleado(const Empleado& empleado) {
     this->empleados.push_back(empleado);
     cantEmpleadosDepts++;
     return true;
 }
 
-bool Departamento::despedirEmpleado(Empleado* empleado) {
+bool Departamento::despedirEmpleado(const Empleado& empleado) {
     for (int i = 0; i < this->empleados.size(); i++) {
-        if (this->empleados[i]->nombre == empleado->nombre) {
+        if (this->empleados[i].nombre == empleado.nombre) {
             this->empleados.erase(this->empleados.begin() + i);
             cantEmpleadosDepts--;
             return true;
         }
     }
-    return false;
+    throw invalid_argument("Empleado no encontrado");
 }

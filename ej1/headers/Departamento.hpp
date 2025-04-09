@@ -3,23 +3,22 @@
 
 #include <vector>
 #include <string>
+#include "Empleado.hpp"
 
 using namespace std;
 
-class Empleado;
-
 class Departamento {
     private:
-        vector<Empleado*> empleados;
+        vector<Empleado> empleados;
         static int cantEmpleadosDepts;
     public:
         Departamento(string nombre, string ubicacion);
         string nombre;
         string ubicacion;
         static int contarEmpleados();
-        vector<Empleado*> getEmpleados() const;
-        bool contratarEmpleado(Empleado* empleado);
-        bool despedirEmpleado(Empleado* empleado);
+        vector<Empleado> getEmpleados() const;
+        bool contratarEmpleado(const Empleado& empleado);
+        bool despedirEmpleado(const Empleado& empleado);
 };
 
 #endif
