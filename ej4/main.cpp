@@ -108,7 +108,7 @@ int seleccionarPersonaje() {
     }
 }
 
-shared_ptr<IArma> seleccionarArma() {
+shared_ptr<IArma> obtenerArma() {
     int opcion;
     
     while (true) {
@@ -164,11 +164,15 @@ void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival
     int turno = 1;
     string mensajeResultado = "";
     
+    // A la que uno muere, se termina la batalla
     while (vidaJugador > 0 && vidaRival > 0) {
         ClearScreen();
+
+        // Scoreboard con personajes y vida
         mostrarMarcadorBatalla(jugador, rival, vidaJugador, vidaRival);
         cout << endl;
         
+        // Mensaje del resultado del turno
         if (!mensajeResultado.empty()) {
             cout << "==================== Resultado =====================" << endl;
             cout << mensajeResultado << endl;
@@ -176,6 +180,7 @@ void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival
             cout << endl;
         }
         
+        // Marcado del numero de turno
         cout << "==================== Turno " << turno << " ====================" << endl;
         
         TipoAtaque ataqueJugador = seleccionarAtaque();
@@ -183,6 +188,7 @@ void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival
         
         cout << "==================================================" << endl;
         
+        // Calculo el resultado del turno
         if (ataqueJugador == ataqueRival) {
             mensajeResultado = "¡Empate! Ningún jugador recibe daño.";
         } else if (
@@ -215,26 +221,38 @@ void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival
 }
 
 int main() {
+    // Reinicio seed para que los numeros sean aleatorios
     srand(time(0));
 
     ClearScreen();
     cout << "=== Creación del Personaje del Jugador 1 ===" << endl;
     
+    // Obtengo el numero de personaje del jugador
     int opcion_jugador = seleccionarPersonaje();
     
     ClearScreen();
 
-    shared_ptr<IArma> arma = seleccionarArma();
-    shared_ptr<IPersonaje> jugador = Factory::crearPersonaje(
-        static_cast<Personajes>(opcion_jugador),
-        {arma, nullptr}
-    );
+    try {
+        // Pido y creo el arma del jugador
+        shared_ptr<IArma> arma = obtenerArma();
+
+        // Pido y creo el personaje del jugador
+        shared_ptr<IPersonaje> jugador = Factory::crearPersonaje(
+            static_cast<Personajes>(opcion_jugador),
+            {arma, nullptr}
+        );
     
-    shared_ptr<IPersonaje> rival = crearPersonajeAleatorio();
+        // Creo el personaje del rival
+        shared_ptr<IPersonaje> rival = crearPersonajeAleatorio();
 
-    mostrarMarcadorBatalla(jugador, rival, 100, 100);
-    cout << endl;
-    simularBatalla(jugador, rival);
 
-    return 0;
+        mostrarMarcadorBatalla(jugador, rival, 100, 100);
+        cout << endl;
+        simularBatalla(jugador, rival);
+
+        return 0;
+    } catch (const bad_alloc& e) {
+        cout << "Error al crear los personajes" << endl;
+        return 1;
+    }
 }

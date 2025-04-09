@@ -67,17 +67,14 @@ void mostrarPersonaje(const shared_ptr<IPersonaje>& personaje) {
         return;
     }
 
-    // Mostrar información básica del personaje
     cout << "=== " << personaje->getNombre() << " ===" << endl;
     cout << "Vida: " << personaje->getVida() << endl;
     cout << "Armadura: " << personaje->getArmadura() << endl;
     cout << "Resistencia Mágica: " << personaje->getResistenciaMagica() << endl;
 
-    // Mostrar armas
     cout << "Armas:" << endl;
     auto armas = personaje->getArmas();
     
-    // Primera arma
     cout << "  Principal: ";
     if (armas.first) {
         cout << armas.first->getNombre() 
@@ -87,7 +84,6 @@ void mostrarPersonaje(const shared_ptr<IPersonaje>& personaje) {
         cout << "Ninguna" << endl;
     }
     
-    // Segunda arma
     cout << "  Secundaria: ";
     if (armas.second) {
         cout << armas.second->getNombre()
@@ -103,8 +99,11 @@ void mostrarPersonaje(const shared_ptr<IPersonaje>& personaje) {
 void mostrarPersonajes(const vector<shared_ptr<IPersonaje>>& personajes, const string& tipo) {
     cout << "\n" << tipo << " creados: " << personajes.size() << endl;
     for (const auto& personaje : personajes) {
-        mostrarPersonaje(personaje);
-        cout << endl;
+        // Validacion por si no se pudo alocar memoria para el personaje
+        if (personaje) {
+            mostrarPersonaje(personaje);
+            cout << endl;
+        }
     }
 }
 
