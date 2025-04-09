@@ -29,7 +29,7 @@ bool Departamento::contratarEmpleado(const Empleado& empleado) {
 }
 
 bool Departamento::despedirEmpleado(const Empleado& empleado) {
-    for (int i = 0; i < this->empleados.size(); i++) {
+    for (size_t i = 0; i < this->empleados.size(); i++) {
         if (this->empleados[i].nombre == empleado.nombre) {
             this->empleados.erase(this->empleados.begin() + i);
             cantEmpleadosDepts--;
