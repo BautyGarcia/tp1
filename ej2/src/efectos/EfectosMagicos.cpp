@@ -6,7 +6,7 @@ using namespace std;
 
 Stun::Stun() {}
 
-void Stun::aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) {
+void Stun::aplicar(shared_ptr<IPersonaje>, shared_ptr<IPersonaje> objetivo) {
     if (rand() % 100 > this->probabilidad) return;
 
     objetivo->aplicarEfecto(Efecto::STUN, 2);
@@ -18,7 +18,7 @@ string Stun::getNombre() const {
 
 CurarVida::CurarVida() {}
 
-void CurarVida::aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) {
+void CurarVida::aplicar(shared_ptr<IPersonaje>, shared_ptr<IPersonaje> objetivo) {
     objetivo->curarVida(this->cantidad);
 }
 
@@ -28,7 +28,7 @@ string CurarVida::getNombre() const {
 
 BoostMagico::BoostMagico() {}
 
-void BoostMagico::aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) {
+void BoostMagico::aplicar(shared_ptr<IPersonaje>, shared_ptr<IPersonaje> objetivo) {
     objetivo->boostDamage(this->porcentaje);
 }
 

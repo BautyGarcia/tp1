@@ -5,7 +5,7 @@ using namespace std;
 
 Sangrado::Sangrado() {}
 
-void Sangrado::aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) {
+void Sangrado::aplicar(shared_ptr<IPersonaje>, shared_ptr<IPersonaje> objetivo) {
     objetivo->aplicarEfecto(Efecto::SANGRE, 3);
 }
 
@@ -13,13 +13,13 @@ string Sangrado::getNombre() const {
     return "Efecto Sangrado";
 }
 
-const int Sangrado::getCantidad() {
+int Sangrado::getCantidad() {
     return cantidad;
 }
 
 Nada::Nada() {}
 
-void Nada::aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) {
+void Nada::aplicar(shared_ptr<IPersonaje>, shared_ptr<IPersonaje>) {
     // Nada
 }
 
