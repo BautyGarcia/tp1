@@ -232,6 +232,8 @@ void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival
     cout << "======================================================" << endl;
 }
 
+// Nota, como el caso de bad_alloc ya esta manejado desde la clase Factory, solamente
+// Reviso que los punteros no sean nulos
 int main() {
     // Reinicio seed para que los numeros sean aleatorios
     srand(time(0));
@@ -244,27 +246,36 @@ int main() {
     
     ClearScreen();
 
-    try {
-        // Pido y creo el arma del jugador
-        shared_ptr<IArma> arma = obtenerArma();
+    // Pido y creo el arma del jugador
+    shared_ptr<IArma> arma = obtenerArma();
 
-        // Pido y creo el personaje del jugador
-        shared_ptr<IPersonaje> jugador = Factory::crearPersonajeArmado(
-            static_cast<Personajes>(opcion_jugador),
-            {arma, nullptr}
-        );
-    
-        // Creo el personaje del rival
-        shared_ptr<IPersonaje> rival = crearPersonajeAleatorio();
-
-
-        mostrarMarcadorBatalla(jugador, rival, 100, 100);
-        cout << endl;
-        simularBatalla(jugador, rival);
-
-        return 0;
-    } catch (const bad_alloc& e) {
-        cout << "Error al crear los personajes" << endl;
+    if (arma == nullptr) {
+        cout << "Error al crear el arma" << endl;
         return 1;
     }
+
+    // Pido y creo el personaje del jugador
+    shared_ptr<IPersonaje> jugador = Factory::crearPersonajeArmado(
+        static_cast<Personajes>(opcion_jugador),
+        {arma, nullptr}
+    );
+
+    if (jugador == nullptr) {
+        cout << "Error al crear el personaje" << endl;
+        return 1;
+    }
+
+    // Creo el personaje del rival
+    shared_ptr<IPersonaje> rival = crearPersonajeAleatorio();
+
+    if (rival == nullptr) {
+        cout << "Error al crear el personaje del rival" << endl;
+        return 1;
+    }
+
+    mostrarMarcadorBatalla(jugador, rival, 100, 100);
+    cout << endl;
+    simularBatalla(jugador, rival);
+
+    return 0;
 }
