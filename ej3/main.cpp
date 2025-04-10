@@ -2,10 +2,12 @@
 
 using namespace std;
 
+// Genera un numero aleatorio entre el rango [min, max]
 int getRandomNumber(int min, int max) {
     return (rand() % (max - min + 1)) + min;
 }
 
+// Genera una arma aleatoria magica o no magica
 shared_ptr<IArma> getRandomArma(bool isMago) {
     if (isMago) {
         switch (getRandomNumber(0, 3)) {
@@ -27,6 +29,7 @@ shared_ptr<IArma> getRandomArma(bool isMago) {
     }
 }
 
+// Genera un personaje aleatorio magico o no magico
 shared_ptr<IPersonaje> getRandomPersonaje(bool isMago, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas) {
     if (isMago) {
         switch (getRandomNumber(0, 3)) {
@@ -48,6 +51,7 @@ shared_ptr<IPersonaje> getRandomPersonaje(bool isMago, pair<shared_ptr<IArma>, s
     }
 }
 
+// Agrega una cantidad N de personajes magicos o no magicos a un vector pasado por referencia
 void crearPersonajes(vector<shared_ptr<IPersonaje>>& personajes, int cantidad, bool isMago) {
     for (int i = 0; i < cantidad; i++) {
         int cantArmas = getRandomNumber(0, 2);
@@ -61,6 +65,7 @@ void crearPersonajes(vector<shared_ptr<IPersonaje>>& personajes, int cantidad, b
     }
 }
 
+// Muestra los datos de un personaje
 void mostrarPersonaje(const shared_ptr<IPersonaje>& personaje) {
     if (!personaje) {
         cout << "Error: Personaje nulo" << endl;
@@ -96,6 +101,7 @@ void mostrarPersonaje(const shared_ptr<IPersonaje>& personaje) {
     cout << "===================" << endl;
 }
 
+// Muestra los personajes de un vector pasado por referencia
 void mostrarPersonajes(const vector<shared_ptr<IPersonaje>>& personajes, const string& tipo) {
     cout << "\n" << tipo << " creados: " << personajes.size() << endl;
     for (const auto& personaje : personajes) {

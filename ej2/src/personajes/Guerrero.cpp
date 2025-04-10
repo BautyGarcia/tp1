@@ -70,12 +70,18 @@ void Guerrero::boostDamage(int porcentaje) {
 }
 
 void Guerrero::propagarEfecto() {
-    if (this->turnosRestantesEfecto == 0) return;
+    // Si el efecto no tiene turnos restantes, se elimina
+    if (this->turnosRestantesEfecto == 0) {
+        this->efectoActual = Efecto::NINGUNO;
+        return;
+    };
 
+    // Si el efecto es sangrado (Unico efecto con propagacion activa), se reduce la vida del guerrero en la cantidad de sangrado
     if (this->efectoActual == Efecto::SANGRE) {
         this->vida -= Sangrado::getCantidad();
     }
 
+    // Se resta un turno al efecto
     this->restarTurnoEfecto();
 }
 

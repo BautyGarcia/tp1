@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// Validacion de input usada en homework 2
 bool isValidInput() {
     if (!cin) {
         cin.clear();
@@ -11,6 +12,7 @@ bool isValidInput() {
     return true;
 }
 
+// Limpieza de terminal usada en homework 2
 void ClearScreen() {
     #ifdef _WIN32
         system("cls");
@@ -53,6 +55,7 @@ void mostrarOpcionesAtaque() {
     cout << "Su opción: (1) Golpe Fuerte, (2) Golpe Rápido, (3) Defensa y Golpe: ";
 }
 
+// Input de seleccion de ataque
 TipoAtaque seleccionarAtaque() {
     int opcion;
     bool inputInvalido = false;
@@ -77,10 +80,12 @@ TipoAtaque seleccionarAtaque() {
     }
 }
 
+// Genera un ataque aleatorio para el rival
 TipoAtaque ataqueAleatorio() {
     return static_cast<TipoAtaque>(rand() % 3);
 }
 
+// Obtiene el nombre (string) del ataque
 string obtenerNombreAtaque(TipoAtaque ataque) {
     switch (ataque) {
         case TipoAtaque::GOLPE_FUERTE: return "Golpe Fuerte";
@@ -90,6 +95,7 @@ string obtenerNombreAtaque(TipoAtaque ataque) {
     }
 }
 
+// Input de seleccion de personaje, sigue hasta que el input sea valido
 int seleccionarPersonaje() {
     int opcion;
     
@@ -108,6 +114,7 @@ int seleccionarPersonaje() {
     }
 }
 
+// Input de seleccion de arma, sigue hasta que el input sea valido, una vez seleccionado, crea el arma
 shared_ptr<IArma> obtenerArma() {
     int opcion;
     
@@ -126,6 +133,7 @@ shared_ptr<IArma> obtenerArma() {
     }
 }
 
+// Genera un personaje aleatorio
 shared_ptr<IPersonaje> crearPersonajeAleatorio() {
     // Personaje aleatorio (0-8)
     Personajes tipoPersonaje = static_cast<Personajes>(rand() % 9);
@@ -137,6 +145,8 @@ shared_ptr<IPersonaje> crearPersonajeAleatorio() {
     return Factory::crearPersonaje(tipoPersonaje, {armaAleatoria, nullptr});
 }
 
+
+// Auxiliar para mostrar la barra de vida en la batalla
 string obtenerBarraVida(int vida) {
     string barra = "[";
     int numHashtags = vida / 10;
@@ -147,6 +157,7 @@ string obtenerBarraVida(int vida) {
     return barra;
 }
 
+// Muestra el marcador de la batalla
 void mostrarMarcadorBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival, int vidaJugador, int vidaRival) {
     cout << "==================== ¡Batalla! ====================" << endl;
     cout << "Jugador 1:" << endl;
@@ -158,6 +169,7 @@ void mostrarMarcadorBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaj
     cout << "==================================================" << endl;
 }
 
+// Simula la batalla
 void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival) {
     int vidaJugador = 100;
     int vidaRival = 100;
@@ -188,7 +200,7 @@ void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival
         
         cout << "==================================================" << endl;
         
-        // Calculo el resultado del turno
+        // Calculo el resultado del turno (Piedra, Papel, Tijera)
         if (ataqueJugador == ataqueRival) {
             mensajeResultado = "¡Empate! Ningún jugador recibe daño.";
         } else if (

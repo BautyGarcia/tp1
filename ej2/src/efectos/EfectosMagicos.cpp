@@ -7,8 +7,10 @@ using namespace std;
 Stun::Stun() {}
 
 void Stun::aplicar(shared_ptr<IPersonaje>, shared_ptr<IPersonaje> objetivo) {
+    // Si no se cumple la probabilidad, no se aplica el efecto
     if (rand() % 100 > this->probabilidad) return;
 
+    // Aplico Stun
     objetivo->aplicarEfecto(Efecto::STUN, 2);
 }
 
@@ -39,8 +41,13 @@ string BoostMagico::getNombre() const {
 RoboDeVida::RoboDeVida() {}
 
 void RoboDeVida::aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) {
+    // Calculo de vida robada
     int vidaRobada = objetivo->getVida() * this->porcentaje;
+
+    // Curacion del usuario
     usuario->curarVida(vidaRobada);
+
+    // Daño al objetivo
     objetivo->recibirDamage(vidaRobada);
 }
 
