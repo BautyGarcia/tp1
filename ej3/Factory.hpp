@@ -54,8 +54,13 @@ enum class Armas {
     POCION,
 };
 
+
+// Nota, permito el crear un personaje sin armas, pero nunca lo uso
+// Esta implementacion es solamente para cumplir con lo pedido en el enunciado
+// No le encontre una razon practica para usarlo
 class Factory {
     public:
         static shared_ptr<IArma> crearArma(Armas arma);
-        static shared_ptr<IPersonaje> crearPersonaje(Personajes personaje, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas);
+        static shared_ptr<IPersonaje> crearPersonaje(Personajes personaje);
+        static shared_ptr<IPersonaje> crearPersonajeArmado(Personajes personaje, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas);
 };

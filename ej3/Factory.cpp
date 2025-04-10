@@ -30,7 +30,7 @@ shared_ptr<IArma> Factory::crearArma(Armas arma) {
     }
 }
 
-shared_ptr<IPersonaje> Factory::crearPersonaje(Personajes personaje, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas) {
+shared_ptr<IPersonaje> Factory::crearPersonajeArmado(Personajes personaje, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas) {
     try {
         switch (personaje) {
             case Personajes::BARBARO:
@@ -58,4 +58,8 @@ shared_ptr<IPersonaje> Factory::crearPersonaje(Personajes personaje, pair<shared
         cout << "Error al crear el personaje" << endl;
         return nullptr;
     }
+}
+
+shared_ptr<IPersonaje> Factory::crearPersonaje(Personajes personaje) {
+    return Factory::crearPersonajeArmado(personaje, {nullptr, nullptr});
 }
