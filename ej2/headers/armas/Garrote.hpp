@@ -8,6 +8,7 @@ using namespace std;
 class Garrote : public ArmaCombate {
     public:
         Garrote(string nombre, int damage, int alcance);
+        void mostrarInfo() const override;
 };
 
 #endif

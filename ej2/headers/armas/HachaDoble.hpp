@@ -8,6 +8,7 @@ using namespace std;
 class HachaDoble : public ArmaCombate {
     public:
         HachaDoble(string nombre, int damage, int alcance);
+        void mostrarInfo() const override;
 };
 
 #endif

@@ -8,6 +8,7 @@ using namespace std;
 class Amuleto : public ArmaMagica {
     public:
         Amuleto(string nombre, int damage, int costoMana, int alcance);
+        void mostrarInfo() const override;
 };
 
 #endif

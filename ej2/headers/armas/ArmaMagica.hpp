@@ -21,6 +21,7 @@ class ArmaMagica : public IArma {
         int getDamage() const override;
         int getAlcance() const override;
         int getCostoMana() const;
+        virtual void mostrarInfo() const override = 0;
         void usar(shared_ptr<IPersonaje> personaje, shared_ptr<IPersonaje> objetivo) override;
 };
 

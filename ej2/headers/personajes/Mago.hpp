@@ -33,6 +33,7 @@ class Mago : public IPersonaje {
         void restarTurnoEfecto() override;
         void boostDamage(int porcentaje) override;
         void propagarEfecto() override;
+        void mostrarInfo() const override = 0;
         Efecto getEfecto() const override;
 };
 

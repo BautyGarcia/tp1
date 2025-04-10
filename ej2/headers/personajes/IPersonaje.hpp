@@ -26,6 +26,7 @@ class IPersonaje {
         virtual void boostDamage(int porcentaje) = 0;
         virtual void propagarEfecto() = 0;
         virtual Efecto getEfecto() const = 0;
+        virtual void mostrarInfo() const = 0;
         virtual ~IPersonaje() = default;
 };
 

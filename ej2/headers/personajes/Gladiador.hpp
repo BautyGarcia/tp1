@@ -8,6 +8,7 @@ using namespace std;
 class Gladiador : public Guerrero {
     public:
         Gladiador(string nombre, int vida, int armadura, int magicResistance, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas);
+        void mostrarInfo() const override;
 };
 
 #endif
