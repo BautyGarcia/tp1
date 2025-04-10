@@ -2,7 +2,7 @@
 #include <ctime>
 #include <limits>
 
-#include "../ej3/Factory.hpp"
+#include "../ej2/Factory.hpp"
 
 enum class TipoAtaque {
     GOLPE_FUERTE,

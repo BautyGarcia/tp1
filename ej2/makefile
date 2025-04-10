@@ -1,5 +1,5 @@
-HEADERS = -I headers/armas/ -I headers/personajes/ -I headers/efectos/ -I utils/
-SRC = src/armas/*.cpp src/personajes/*.cpp src/efectos/*.cpp
+HEADERS = -I ../ej1/headers/armas/ -I ../ej1/headers/personajes/ -I ../ej1/headers/efectos/ -I ../utils/ -I Factory.hpp
+SRC = ../ej1/src/armas/*.cpp ../ej1/src/personajes/*.cpp ../ej1/src/efectos/*.cpp Factory.cpp
 
 make:
 	g++ -std=c++11 -Wall -Wextra $(HEADERS) -g main.cpp $(SRC) -o main
