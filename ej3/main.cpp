@@ -171,6 +171,7 @@ void mostrarMarcadorBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaj
 
 // Simula la batalla
 void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival) {
+    // Creo variables aparte para la vida, no utilizo la vida perteneciente al objeto personaje
     int vidaJugador = 100;
     int vidaRival = 100;
     int turno = 1;
