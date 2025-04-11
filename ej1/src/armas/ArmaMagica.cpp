@@ -35,6 +35,7 @@ void ArmaMagica::usar(shared_ptr<IPersonaje> personaje, shared_ptr<IPersonaje> o
     }
 
     if (personaje->getEfecto() == Efecto::STUN && personaje->getTurnosRestantesEfecto() > 0) {
+        personaje->restarTurnoEfecto();
         throw string("El personaje no puede usar esta arma");
     }
 

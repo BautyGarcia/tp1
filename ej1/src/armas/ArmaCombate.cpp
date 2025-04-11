@@ -26,6 +26,7 @@ int ArmaCombate::getAlcance() const {
 
 void ArmaCombate::usar(shared_ptr<IPersonaje> personaje, shared_ptr<IPersonaje> objetivo) {
     if (personaje->getEfecto() == Efecto::STUN && personaje->getTurnosRestantesEfecto() > 0) {
+        personaje->restarTurnoEfecto();
         throw string("El personaje no puede usar esta arma");
     }
 
