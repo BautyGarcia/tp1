@@ -27,10 +27,12 @@ int ArmaCombate::getAlcance() const {
 void ArmaCombate::usar(shared_ptr<IPersonaje> personaje, shared_ptr<IPersonaje> objetivo) {
     if (personaje->getEfecto() == Efecto::STUN && personaje->getTurnosRestantesEfecto() > 0) {
         personaje->restarTurnoEfecto();
+        cout << personaje->getNombre() << " no puede usar esta arma porque esta stuneado" << endl;
         throw string("El personaje no puede usar esta arma");
     }
 
     if (this->usosRestantes == 0) {
+        cout << personaje->getNombre() << " no puede usar esta arma porque no tiene usos restantes" << endl;
         throw string("Esta arma no tiene usos restantes");
     }
 

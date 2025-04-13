@@ -79,6 +79,7 @@ void Guerrero::propagarEfecto() {
     // Si el efecto es sangrado (Unico efecto con propagacion activa), se reduce la vida del guerrero en la cantidad de sangrado
     if (this->efectoActual == Efecto::SANGRE) {
         this->vida -= Sangrado::getCantidad();
+        cout << this->nombre << " pierde " << Sangrado::getCantidad() << " de vida por efecto de sangrado" << endl;
     }
 
     // Se resta un turno al efecto

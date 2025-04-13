@@ -12,6 +12,7 @@ void Stun::aplicar(shared_ptr<IPersonaje>, shared_ptr<IPersonaje> objetivo) {
 
     // Aplico Stun
     objetivo->aplicarEfecto(Efecto::STUN, 2);
+    cout << objetivo->getNombre() << " queda stuneado por 2 turnos" << endl;
 }
 
 string Stun::getNombre() const {
@@ -21,6 +22,7 @@ string Stun::getNombre() const {
 CurarVida::CurarVida() {}
 
 void CurarVida::aplicar(shared_ptr<IPersonaje>, shared_ptr<IPersonaje> objetivo) {
+    cout << objetivo->getNombre() << " se cura " << this->cantidad << " de vida" << endl;
     objetivo->curarVida(this->cantidad);
 }
 
@@ -31,6 +33,7 @@ string CurarVida::getNombre() const {
 BoostMagico::BoostMagico() {}
 
 void BoostMagico::aplicar(shared_ptr<IPersonaje>, shared_ptr<IPersonaje> objetivo) {
+    cout << objetivo->getNombre() << " recibe un boost de " << this->porcentaje << "% de daño" << endl;
     objetivo->boostDamage(this->porcentaje);
 }
 
@@ -43,7 +46,7 @@ RoboDeVida::RoboDeVida() {}
 void RoboDeVida::aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) {
     // Calculo de vida robada
     int vidaRobada = objetivo->getVida() * this->porcentaje;
-
+    cout << usuario->getNombre() << " roba " << vidaRobada << " de vida a " << objetivo->getNombre() << endl;
     // Curacion del usuario
     usuario->curarVida(vidaRobada);
 

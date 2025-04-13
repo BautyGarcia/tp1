@@ -5,7 +5,8 @@ using namespace std;
 
 Sangrado::Sangrado() {}
 
-void Sangrado::aplicar(shared_ptr<IPersonaje>, shared_ptr<IPersonaje> objetivo) {
+void Sangrado::aplicar(shared_ptr<IPersonaje> personaje, shared_ptr<IPersonaje> objetivo) {
+    cout << personaje->getNombre() << " aplica sangrado a " << objetivo->getNombre() << endl;
     objetivo->aplicarEfecto(Efecto::SANGRE, 3);
 }
 
