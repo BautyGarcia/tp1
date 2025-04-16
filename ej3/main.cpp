@@ -115,7 +115,7 @@ int seleccionarPersonaje() {
 }
 
 // Input de seleccion de arma, sigue hasta que el input sea valido, una vez seleccionado, crea el arma
-shared_ptr<IArma> obtenerArma() {
+unique_ptr<IArma> obtenerArma() {
     int opcion;
     
     while (true) {
@@ -134,15 +134,19 @@ shared_ptr<IArma> obtenerArma() {
 }
 
 // Genera un personaje aleatorio
-shared_ptr<IPersonaje> crearPersonajeAleatorio() {
+unique_ptr<IPersonaje> crearPersonajeAleatorio() {
     // Personaje aleatorio (0-8)
     Personajes tipoPersonaje = static_cast<Personajes>(rand() % 9);
     
     // Arma aleatoria (0-8)
     Armas tipoArma = static_cast<Armas>(rand() % 9);
-    shared_ptr<IArma> armaAleatoria = Factory::crearArma(tipoArma);
+    auto armaAleatoria = Factory::crearArma(tipoArma);
 
-    return Factory::crearPersonajeArmado(tipoPersonaje, {armaAleatoria, nullptr});
+    pair<unique_ptr<IArma>, unique_ptr<IArma>> armas;
+    armas.first = std::move(armaAleatoria);
+    armas.second = nullptr;
+
+    return Factory::crearPersonajeArmado(tipoPersonaje, std::move(armas));
 }
 
 
@@ -158,7 +162,7 @@ string obtenerBarraVida(int vida) {
 }
 
 // Muestra el marcador de la batalla
-void mostrarMarcadorBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival, int vidaJugador, int vidaRival) {
+void mostrarMarcadorBatalla(const IPersonaje* jugador, const IPersonaje* rival, int vidaJugador, int vidaRival) {
     cout << "==================== ¡Batalla! ====================" << endl;
     cout << "Jugador 1:" << endl;
     cout << jugador->getNombre() << " con " << jugador->getArmas().first->getNombre() << endl;
@@ -170,7 +174,7 @@ void mostrarMarcadorBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaj
 }
 
 // Simula la batalla
-void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival) {
+void simularBatalla(unique_ptr<IPersonaje>& jugador, unique_ptr<IPersonaje>& rival) {
     // Creo variables aparte para la vida, no utilizo la vida perteneciente al objeto personaje
     int vidaJugador = 100;
     int vidaRival = 100;
@@ -182,7 +186,7 @@ void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival
         ClearScreen();
 
         // Scoreboard con personajes y vida
-        mostrarMarcadorBatalla(jugador, rival, vidaJugador, vidaRival);
+        mostrarMarcadorBatalla(jugador.get(), rival.get(), vidaJugador, vidaRival);
         cout << endl;
         
         // Mensaje del resultado del turno
@@ -222,7 +226,7 @@ void simularBatalla(shared_ptr<IPersonaje> jugador, shared_ptr<IPersonaje> rival
     }
     
     ClearScreen();
-    mostrarMarcadorBatalla(jugador, rival, vidaJugador, vidaRival);
+    mostrarMarcadorBatalla(jugador.get(), rival.get(), vidaJugador, vidaRival);
     cout << endl;
     cout << "==================== Fin de la Batalla ====================" << endl;
     if (vidaJugador <= 0) {
@@ -248,33 +252,38 @@ int main() {
     ClearScreen();
 
     // Pido y creo el arma del jugador
-    shared_ptr<IArma> arma = obtenerArma();
+    auto arma = obtenerArma();
 
-    if (arma == nullptr) {
+    if (!arma) {
         cout << "Error al crear el arma" << endl;
         return 1;
     }
 
+    // Creo el par de armas
+    pair<unique_ptr<IArma>, unique_ptr<IArma>> armas;
+    armas.first = std::move(arma);
+    armas.second = nullptr;
+
     // Pido y creo el personaje del jugador
-    shared_ptr<IPersonaje> jugador = Factory::crearPersonajeArmado(
+    auto jugador = Factory::crearPersonajeArmado(
         static_cast<Personajes>(opcion_jugador),
-        {arma, nullptr}
+        std::move(armas)
     );
 
-    if (jugador == nullptr) {
+    if (!jugador) {
         cout << "Error al crear el personaje" << endl;
         return 1;
     }
 
     // Creo el personaje del rival
-    shared_ptr<IPersonaje> rival = crearPersonajeAleatorio();
+    auto rival = crearPersonajeAleatorio();
 
-    if (rival == nullptr) {
+    if (!rival) {
         cout << "Error al crear el personaje del rival" << endl;
         return 1;
     }
 
-    mostrarMarcadorBatalla(jugador, rival, 100, 100);
+    mostrarMarcadorBatalla(jugador.get(), rival.get(), 100, 100);
     cout << endl;
     simularBatalla(jugador, rival);
 
