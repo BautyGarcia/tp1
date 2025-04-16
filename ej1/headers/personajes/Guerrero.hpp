@@ -25,7 +25,7 @@ class Guerrero : public IPersonaje {
         int getResistenciaMagica() const override;
         int getTurnosRestantesEfecto() const override;
         int getDamageBoost() const override;
-        pair<unique_ptr<IArma>, unique_ptr<IArma>>& getArmas() override;
+        const pair<unique_ptr<IArma>, unique_ptr<IArma>>& getArmas() const override;
         void recibirDamage(int damage) override;
         void curarVida(int cantidad) override;
         void gastarMana(int cantidad) override;

@@ -8,7 +8,7 @@ int getRandomNumber(int min, int max) {
 }
 
 // Genera una arma aleatoria magica o no magica
-shared_ptr<IArma> getRandomArma(bool isMago) {
+unique_ptr<IArma> getRandomArma(bool isMago) {
     if (isMago) {
         switch (getRandomNumber(0, 3)) {
             case 0: return Factory::crearArma(Armas::AMULETO);
@@ -30,43 +30,43 @@ shared_ptr<IArma> getRandomArma(bool isMago) {
 }
 
 // Genera un personaje aleatorio magico o no magico
-shared_ptr<IPersonaje> getRandomPersonaje(bool isMago, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas) {
+unique_ptr<IPersonaje> getRandomPersonaje(bool isMago, pair<unique_ptr<IArma>, unique_ptr<IArma>> armas) {
     if (isMago) {
         switch (getRandomNumber(0, 3)) {
-            case 0: return Factory::crearPersonajeArmado(Personajes::NIGROMANTE, armas);
-            case 1: return Factory::crearPersonajeArmado(Personajes::CONJURADOR, armas);
-            case 2: return Factory::crearPersonajeArmado(Personajes::HECHICERO, armas);
-            case 3: return Factory::crearPersonajeArmado(Personajes::BRUJO, armas);
+            case 0: return Factory::crearPersonajeArmado(Personajes::NIGROMANTE, std::move(armas));
+            case 1: return Factory::crearPersonajeArmado(Personajes::CONJURADOR, std::move(armas));
+            case 2: return Factory::crearPersonajeArmado(Personajes::HECHICERO, std::move(armas));
+            case 3: return Factory::crearPersonajeArmado(Personajes::BRUJO, std::move(armas));
             default: return nullptr;
         }
     } else {
         switch (getRandomNumber(0, 4)) {
-            case 0: return Factory::crearPersonajeArmado(Personajes::BARBARO, armas);
-            case 1: return Factory::crearPersonajeArmado(Personajes::CABALLERO, armas);
-            case 2: return Factory::crearPersonajeArmado(Personajes::MERCENARIO, armas);
-            case 3: return Factory::crearPersonajeArmado(Personajes::PALADIN, armas);
-            case 4: return Factory::crearPersonajeArmado(Personajes::GLADIADOR, armas);
+            case 0: return Factory::crearPersonajeArmado(Personajes::BARBARO, std::move(armas));
+            case 1: return Factory::crearPersonajeArmado(Personajes::CABALLERO, std::move(armas));
+            case 2: return Factory::crearPersonajeArmado(Personajes::MERCENARIO, std::move(armas));
+            case 3: return Factory::crearPersonajeArmado(Personajes::PALADIN, std::move(armas));
+            case 4: return Factory::crearPersonajeArmado(Personajes::GLADIADOR, std::move(armas));
             default: return nullptr;
         }
     }
 }
 
 // Agrega una cantidad N de personajes magicos o no magicos a un vector pasado por referencia
-void crearPersonajes(vector<shared_ptr<IPersonaje>>& personajes, int cantidad, bool isMago) {
+void crearPersonajes(vector<unique_ptr<IPersonaje>>& personajes, int cantidad, bool isMago) {
     for (int i = 0; i < cantidad; i++) {
         int cantArmas = getRandomNumber(0, 2);
         
-        pair<shared_ptr<IArma>, shared_ptr<IArma>> armas;
+        pair<unique_ptr<IArma>, unique_ptr<IArma>> armas;
         armas.first = (cantArmas > 0) ? getRandomArma(isMago) : nullptr;
         armas.second = (cantArmas > 1) ? getRandomArma(isMago) : nullptr;
 
-        shared_ptr<IPersonaje> personaje = getRandomPersonaje(isMago, armas);
-        if (personaje) personajes.push_back(personaje);
+        auto personaje = getRandomPersonaje(isMago, std::move(armas));
+        if (personaje) personajes.push_back(std::move(personaje));
     }
 }
 
 // Muestra los datos de un personaje
-void mostrarPersonaje(const shared_ptr<IPersonaje>& personaje) {
+void mostrarPersonaje(const IPersonaje* personaje) {
     if (!personaje) {
         cout << "Error: Personaje nulo" << endl;
         return;
@@ -78,7 +78,7 @@ void mostrarPersonaje(const shared_ptr<IPersonaje>& personaje) {
     cout << "Resistencia Mágica: " << personaje->getResistenciaMagica() << endl;
 
     cout << "Armas:" << endl;
-    auto armas = personaje->getArmas();
+    const auto& armas = personaje->getArmas();
     
     cout << "  Principal: ";
     if (armas.first) {
@@ -102,12 +102,12 @@ void mostrarPersonaje(const shared_ptr<IPersonaje>& personaje) {
 }
 
 // Muestra los personajes de un vector pasado por referencia
-void mostrarPersonajes(const vector<shared_ptr<IPersonaje>>& personajes, const string& tipo) {
+void mostrarPersonajes(const vector<unique_ptr<IPersonaje>>& personajes, const string& tipo) {
     cout << "\n" << tipo << " creados: " << personajes.size() << endl;
     for (const auto& personaje : personajes) {
         // Validacion por si no se pudo alocar memoria para el personaje
         if (personaje) {
-            mostrarPersonaje(personaje);
+            mostrarPersonaje(personaje.get());
             cout << endl;
         }
     }
@@ -116,8 +116,8 @@ void mostrarPersonajes(const vector<shared_ptr<IPersonaje>>& personajes, const s
 int main() {
     srand(time(0));
 
-    vector<shared_ptr<IPersonaje>> magos;
-    vector<shared_ptr<IPersonaje>> guerreros;
+    vector<unique_ptr<IPersonaje>> magos;
+    vector<unique_ptr<IPersonaje>> guerreros;
 
     int cantMagos = getRandomNumber(3, 7);
     int cantGuerreros = getRandomNumber(3, 7);

@@ -36,7 +36,7 @@ int Mago::getTurnosRestantesEfecto() const {
     return this->turnosRestantesEfecto;
 }
 
-pair<unique_ptr<IArma>, unique_ptr<IArma>>& Mago::getArmas() {
+const pair<unique_ptr<IArma>, unique_ptr<IArma>>& Mago::getArmas() const {
     return this->armas;
 }
 

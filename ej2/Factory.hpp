@@ -60,7 +60,7 @@ enum class Armas {
 // No le encontre una razon practica para usarlo
 class Factory {
     public:
-        static shared_ptr<IArma> crearArma(Armas arma);
-        static shared_ptr<IPersonaje> crearPersonaje(Personajes personaje);
-        static shared_ptr<IPersonaje> crearPersonajeArmado(Personajes personaje, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas);
+        static unique_ptr<IArma> crearArma(Armas arma);
+        static unique_ptr<IPersonaje> crearPersonaje(Personajes personaje);
+        static unique_ptr<IPersonaje> crearPersonajeArmado(Personajes personaje, pair<unique_ptr<IArma>, unique_ptr<IArma>> armas);
 };

@@ -18,7 +18,7 @@ class IPersonaje {
         virtual int getResistenciaMagica() const = 0;
         virtual int getTurnosRestantesEfecto() const = 0;
         virtual int getDamageBoost() const = 0;
-        virtual pair<unique_ptr<IArma>, unique_ptr<IArma>>& getArmas() = 0;
+        virtual const pair<unique_ptr<IArma>, unique_ptr<IArma>>& getArmas() const = 0;
         virtual void recibirDamage(int damage) = 0;
         virtual void curarVida(int cantidad) = 0;
         virtual void gastarMana(int cantidad) = 0;

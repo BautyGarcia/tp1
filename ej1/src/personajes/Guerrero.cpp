@@ -42,7 +42,7 @@ int Guerrero::getDamageBoost() const {
     return this->damageBoost;
 }
 
-pair<unique_ptr<IArma>, unique_ptr<IArma>>& Guerrero::getArmas() {
+const pair<unique_ptr<IArma>, unique_ptr<IArma>>& Guerrero::getArmas() const {
     return this->armas;
 }
 

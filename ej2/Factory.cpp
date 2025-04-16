@@ -1,26 +1,26 @@
 #include "Factory.hpp"
 
-shared_ptr<IArma> Factory::crearArma(Armas arma) {
+unique_ptr<IArma> Factory::crearArma(Armas arma) {
     try {
         switch (arma) {
             case Armas::ESPADA:
-                return make_shared<Espada>("Espada", 50, 2);
+                return make_unique<Espada>("Espada", 50, 2);
             case Armas::HACHA:
-                return make_shared<Hacha>("Hacha", 55, 1);
+                return make_unique<Hacha>("Hacha", 55, 1);
             case Armas::LANZA:
-                return make_shared<Lanza>("Lanza", 45, 3);
+                return make_unique<Lanza>("Lanza", 45, 3);
             case Armas::HACHA_DOBLE:
-                return make_shared<HachaDoble>("Hacha Doble", 65, 1);
+                return make_unique<HachaDoble>("Hacha Doble", 65, 1);
             case Armas::GARROTE:
-                return make_shared<Garrote>("Garrote", 40, 1);
+                return make_unique<Garrote>("Garrote", 40, 1);
             case Armas::AMULETO:
-                return make_shared<Amuleto>("Amuleto", 30, 25, 3);
+                return make_unique<Amuleto>("Amuleto", 30, 25, 3);
             case Armas::BASTON:
-                return make_shared<Baston>("Baston", 40, 30, 4);
+                return make_unique<Baston>("Baston", 40, 30, 4);
             case Armas::LIBRO_DE_HECHIZOS:
-                return make_shared<LibroDeHechizos>("Libro de Hechizos", 20, 20, 5);
+                return make_unique<LibroDeHechizos>("Libro de Hechizos", 20, 20, 5);
             case Armas::POCION:
-                return make_shared<Pocion>("Pocion", 0, 10, 1);
+                return make_unique<Pocion>("Pocion", 0, 10, 1);
             default:
                 return nullptr;
         }
@@ -30,27 +30,27 @@ shared_ptr<IArma> Factory::crearArma(Armas arma) {
     }
 }
 
-shared_ptr<IPersonaje> Factory::crearPersonajeArmado(Personajes personaje, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas) {
+unique_ptr<IPersonaje> Factory::crearPersonajeArmado(Personajes personaje, pair<unique_ptr<IArma>, unique_ptr<IArma>> armas) {
     try {
         switch (personaje) {
             case Personajes::BARBARO:
-                return make_shared<Barbaro>("Barbaro", 180, 25, 5, armas);
+                return make_unique<Barbaro>("Barbaro", 180, 25, 5, std::move(armas));
             case Personajes::CABALLERO:
-                return make_shared<Caballero>("Caballero", 150, 30, 10, armas);
+                return make_unique<Caballero>("Caballero", 150, 30, 10, std::move(armas));
             case Personajes::MERCENARIO:
-                return make_shared<Mercenario>("Mercenario", 140, 20, 10, armas);
+                return make_unique<Mercenario>("Mercenario", 140, 20, 10, std::move(armas));
             case Personajes::PALADIN:
-                return make_shared<Paladin>("Paladin", 160, 25, 25, armas);
+                return make_unique<Paladin>("Paladin", 160, 25, 25, std::move(armas));
             case Personajes::GLADIADOR:
-                return make_shared<Gladiador>("Gladiador", 170, 20, 5, armas);
+                return make_unique<Gladiador>("Gladiador", 170, 20, 5, std::move(armas));
             case Personajes::NIGROMANTE:
-                return make_shared<Nigromante>("Nigromante", 150, 110, 5, 35, armas);
+                return make_unique<Nigromante>("Nigromante", 150, 110, 5, 35, std::move(armas));
             case Personajes::CONJURADOR:
-                return make_shared<Conjurador>("Conjurador", 150, 120, 8, 25, armas);
+                return make_unique<Conjurador>("Conjurador", 150, 120, 8, 25, std::move(armas));
             case Personajes::HECHICERO:
-                return make_shared<Hechicero>("Hechicero", 150, 100, 5, 30, armas);
+                return make_unique<Hechicero>("Hechicero", 150, 100, 5, 30, std::move(armas));
             case Personajes::BRUJO:
-                return make_shared<Brujo>("Brujo", 150, 115, 10, 30, armas);
+                return make_unique<Brujo>("Brujo", 150, 115, 10, 30, std::move(armas));
             default:
                 return nullptr;
         }
@@ -60,6 +60,6 @@ shared_ptr<IPersonaje> Factory::crearPersonajeArmado(Personajes personaje, pair<
     }
 }
 
-shared_ptr<IPersonaje> Factory::crearPersonaje(Personajes personaje) {
+unique_ptr<IPersonaje> Factory::crearPersonaje(Personajes personaje) {
     return Factory::crearPersonajeArmado(personaje, {nullptr, nullptr});
 }
