@@ -1,8 +1,10 @@
 #include "../../headers/armas/LibroDeHechizos.hpp"
 #include "../../headers/efectos/EfectosMagicos.hpp"
 
+using namespace std;
+
 LibroDeHechizos::LibroDeHechizos(string nombre, int damage, int costoMana, int alcance) : 
-    ArmaMagica(nombre, damage, costoMana, alcance, make_shared<BoostMagico>())
+    ArmaMagica(nombre, damage, costoMana, alcance, make_unique<BoostMagico>())
 {}
 
 void LibroDeHechizos::mostrarInfo() const {

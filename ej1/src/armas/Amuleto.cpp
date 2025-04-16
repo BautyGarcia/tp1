@@ -1,8 +1,10 @@
 #include "../../headers/armas/Amuleto.hpp"
 #include "../../headers/efectos/EfectosMagicos.hpp"
 
+using namespace std;
+
 Amuleto::Amuleto(string nombre, int damage, int costoMana, int alcance) : 
-    ArmaMagica(nombre, damage, costoMana, alcance, make_shared<RoboDeVida>())
+    ArmaMagica(nombre, damage, costoMana, alcance, make_unique<RoboDeVida>())
 {}
 
 void Amuleto::mostrarInfo() const {

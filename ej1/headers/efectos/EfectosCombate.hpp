@@ -10,7 +10,7 @@ class Sangrado : public IEfecto {
         static const int cantidad = 30;
     public:
         Sangrado();
-        void aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) override;
+        void aplicar(IPersonaje* usuario, IPersonaje* objetivo) override;
         string getNombre() const override;
         static int getCantidad();
 };
@@ -18,7 +18,7 @@ class Sangrado : public IEfecto {
 class Nada : public IEfecto {
     public:
         Nada();
-        void aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) override;
+        void aplicar(IPersonaje* usuario, IPersonaje* objetivo) override;
         string getNombre() const override;
 };
 

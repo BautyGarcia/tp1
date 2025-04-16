@@ -4,12 +4,12 @@
 
 using namespace std;
 
-ArmaCombate::ArmaCombate(string nombre, int damage, int alcance, shared_ptr<IEfecto> efecto) : 
+ArmaCombate::ArmaCombate(string nombre, int damage, int alcance, unique_ptr<IEfecto> efecto) : 
     nombre(nombre),
     damage(damage),
     alcance(alcance),
     usosRestantes(100),
-    efecto(efecto)
+    efecto(std::move(efecto))
 {}
 
 string ArmaCombate::getNombre() const {
@@ -24,7 +24,7 @@ int ArmaCombate::getAlcance() const {
     return this->alcance;
 }
 
-void ArmaCombate::usar(shared_ptr<IPersonaje> personaje, shared_ptr<IPersonaje> objetivo) {
+void ArmaCombate::usar(IPersonaje* personaje, IPersonaje* objetivo) {
     if (personaje->getEfecto() == Efecto::STUN && personaje->getTurnosRestantesEfecto() > 0) {
         personaje->restarTurnoEfecto();
         cout << personaje->getNombre() << " no puede usar esta arma porque esta stuneado" << endl;

@@ -1,15 +1,13 @@
 #include "../../headers/personajes/Mago.hpp"
 #include "../../headers/efectos/EfectosCombate.hpp"
 
-using namespace std;
-
-Mago::Mago(string nombre, int mana, int vida, int armadura, int resistenciaMagica, pair<shared_ptr<IArma>, shared_ptr<IArma>> armas) : 
+Mago::Mago(string nombre, int mana, int vida, int armadura, int resistenciaMagica, pair<unique_ptr<IArma>, unique_ptr<IArma>> armas) : 
     nombre(nombre),
     mana(mana),
     vida(vida),
     armadura(armadura),
     resistenciaMagica(resistenciaMagica),
-    armas(armas),
+    armas(std::move(armas)),
     efectoActual(Efecto::NINGUNO),
     turnosRestantesEfecto(0)
 {}
@@ -38,7 +36,7 @@ int Mago::getTurnosRestantesEfecto() const {
     return this->turnosRestantesEfecto;
 }
 
-pair<shared_ptr<IArma>, shared_ptr<IArma>> Mago::getArmas() const {
+pair<unique_ptr<IArma>, unique_ptr<IArma>>& Mago::getArmas() {
     return this->armas;
 }
 

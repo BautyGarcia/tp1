@@ -4,12 +4,12 @@
 
 using namespace std;
 
-ArmaMagica::ArmaMagica(string nombre, int damage, int costoMana, int alcance, shared_ptr<IEfecto> efecto) : 
+ArmaMagica::ArmaMagica(string nombre, int damage, int costoMana, int alcance, unique_ptr<IEfecto> efecto) : 
     nombre(nombre),
     damage(damage),
     costoMana(costoMana),
     alcance(alcance),
-    efecto(efecto) 
+    efecto(std::move(efecto))
 {}
 
 string ArmaMagica::getNombre() const {
@@ -28,7 +28,7 @@ int ArmaMagica::getCostoMana() const {
     return this->costoMana;
 }
 
-void ArmaMagica::usar(shared_ptr<IPersonaje> personaje, shared_ptr<IPersonaje> objetivo) {
+void ArmaMagica::usar(IPersonaje* personaje, IPersonaje* objetivo) {
     // Validacion de mana
     if (personaje->getMana() < this->costoMana) {
         throw string("El personaje no tiene suficiente mana para usar esta arma");

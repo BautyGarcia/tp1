@@ -1,8 +1,10 @@
 #include "../../headers/armas/Pocion.hpp"
 #include "../../headers/efectos/EfectosMagicos.hpp"
 
+using namespace std;
+
 Pocion::Pocion(string nombre, int damage, int costoMana, int alcance) : 
-    ArmaMagica(nombre, damage, costoMana, alcance, make_shared<CurarVida>())
+    ArmaMagica(nombre, damage, costoMana, alcance, make_unique<CurarVida>())
 {}
 
 void Pocion::mostrarInfo() const {

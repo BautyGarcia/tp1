@@ -14,15 +14,15 @@ class ArmaMagica : public IArma {
         int damage;
         int costoMana;
         int alcance;
-        shared_ptr<IEfecto> efecto;
+        unique_ptr<IEfecto> efecto;
     public:
-        ArmaMagica(string nombre, int damage, int costoMana, int alcance, shared_ptr<IEfecto> efecto);
+        ArmaMagica(string nombre, int damage, int costoMana, int alcance, unique_ptr<IEfecto> efecto);
         string getNombre() const override;
         int getDamage() const override;
         int getAlcance() const override;
         int getCostoMana() const;
         virtual void mostrarInfo() const override = 0;
-        void usar(shared_ptr<IPersonaje> personaje, shared_ptr<IPersonaje> objetivo) override;
+        void usar(IPersonaje* personaje, IPersonaje* objetivo) override;
 };
 
 #endif

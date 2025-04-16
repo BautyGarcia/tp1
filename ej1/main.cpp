@@ -10,29 +10,29 @@ using namespace std;
 
 int main() {
     // Crear efectos
-    auto efectoSangrado = make_shared<Sangrado>();
-    auto efectoMagico = make_shared<BoostMagico>();
+    auto efectoSangrado = make_unique<Sangrado>();
+    auto efectoMagico = make_unique<BoostMagico>();
 
     // Crear armas
-    auto espada = make_shared<Espada>("Espada del Rey", 50, 2);
-    auto libro = make_shared<LibroDeHechizos>("Grimorio Antiguo", 40, 30, 4);
+    auto espada = make_unique<Espada>("Espada del Rey", 50, 2);
+    auto libro = make_unique<LibroDeHechizos>("Grimorio Antiguo", 40, 30, 4);
 
     // Crear personajes
-    auto barbaro = make_shared<Barbaro>(
+    auto barbaro = make_unique<Barbaro>(
         "Conan",         // nombre
         200,            // vida
         50,             // armadura
         20,             // resistencia mágica
-        make_pair(espada, nullptr)  // armas
+        make_pair(std::move(espada), nullptr)  // armas
     );
 
-    auto brujo = make_shared<Brujo>(
+    auto brujo = make_unique<Brujo>(
         "Gandalf",       // nombre
         100,            // mana
         150,            // vida
         20,             // armadura
         40,             // resistencia mágica
-        make_pair(libro, nullptr)   // armas
+        make_pair(std::move(libro), nullptr)   // armas
     );
 
     cout << "=== Información de los Personajes ===" << endl;
@@ -43,11 +43,11 @@ int main() {
     cout << "\n=== Simulación de Acciones ===" << endl;
     
     // El bárbaro ataca al brujo
-    espada->usar(barbaro, brujo);
+    barbaro->getArmas().first->usar(barbaro.get(), brujo.get());
     cout << "\nVida de " << brujo->getNombre() << " después del ataque con espada: " << brujo->getVida() << " HP" << endl;
 
     // El brujo usa su libro
-    libro->usar(brujo, barbaro);
+    brujo->getArmas().first->usar(brujo.get(), barbaro.get());
     cout << "\nVida de " << barbaro->getNombre() << " después del ataque mágico: " << barbaro->getVida() << " HP" << endl;
 
     return 0;

@@ -14,14 +14,14 @@ class ArmaCombate : public IArma {
         int damage;
         int alcance;
         int usosRestantes;
-        shared_ptr<IEfecto> efecto;
+        unique_ptr<IEfecto> efecto;
     public:
-        ArmaCombate(string nombre, int damage, int alcance, shared_ptr<IEfecto> efecto);
+        ArmaCombate(string nombre, int damage, int alcance, unique_ptr<IEfecto> efecto);
         string getNombre() const override;
         int getDamage() const override;
         int getAlcance() const override;
         virtual void mostrarInfo() const override = 0;
-        void usar(shared_ptr<IPersonaje> personaje, shared_ptr<IPersonaje> objetivo) override;
+        void usar(IPersonaje* personaje, IPersonaje* objetivo) override;
         void reparar();
 };
 

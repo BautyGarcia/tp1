@@ -10,7 +10,7 @@ class Stun : public IEfecto {
         const int probabilidad = 20;
     public:
         Stun();
-        void aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) override;
+        void aplicar(IPersonaje* usuario, IPersonaje* objetivo) override;
         string getNombre() const override;
 };
 
@@ -19,7 +19,7 @@ class CurarVida : public IEfecto {
         const int cantidad = 100;
     public:
         CurarVida();
-        void aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) override;
+        void aplicar(IPersonaje* usuario, IPersonaje* objetivo) override;
         string getNombre() const override;
     };
 
@@ -28,7 +28,7 @@ class BoostMagico : public IEfecto {
         const int porcentaje = 25;
     public:
         BoostMagico();
-        void aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) override;
+        void aplicar(IPersonaje* usuario, IPersonaje* objetivo) override;
         string getNombre() const override;
 };
 
@@ -37,7 +37,7 @@ class RoboDeVida : public IEfecto {
         const int porcentaje = 15;
     public:
         RoboDeVida();
-        void aplicar(shared_ptr<IPersonaje> usuario, shared_ptr<IPersonaje> objetivo) override;
+        void aplicar(IPersonaje* usuario, IPersonaje* objetivo) override;
         string getNombre() const override;
 };
 
