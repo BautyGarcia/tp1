@@ -9,6 +9,7 @@ Guerrero::Guerrero(string nombre, int vida, int armadura, int resistenciaMagica,
     vida(vida),
     armadura(armadura),
     resistenciaMagica(resistenciaMagica),
+    damageBoost(0),
     armas(std::move(armas)),
     efectoActual(Efecto::NINGUNO),
     turnosRestantesEfecto(0)

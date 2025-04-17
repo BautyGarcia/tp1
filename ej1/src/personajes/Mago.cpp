@@ -7,6 +7,7 @@ Mago::Mago(string nombre, int mana, int vida, int armadura, int resistenciaMagic
     vida(vida),
     armadura(armadura),
     resistenciaMagica(resistenciaMagica),
+    damageBoost(0),
     armas(std::move(armas)),
     efectoActual(Efecto::NINGUNO),
     turnosRestantesEfecto(0)
